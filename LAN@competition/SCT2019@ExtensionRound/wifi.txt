@@ -1,0 +1,5 @@
+ID1: Vanda hotel 2
+
+ID2: Vanda coffee 
+
+Pass: vandahotel

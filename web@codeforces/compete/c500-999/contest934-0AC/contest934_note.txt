@@ -1,0 +1,7 @@
+Problem E. A Colourful Prospect
+*****
+No to circles have the same x, y and r at the same time.
+
+Problem D. A Determined Cleanup
+*****
+There is a mistake in output section: you should print d -- the number of coefficients in the polynomial (that is degree + 1), and then d coefficients.

@@ -1,0 +1,1 @@
+print('Yes' if sum(list(map(int, input().split()))) % 9 == 0 else 'No')

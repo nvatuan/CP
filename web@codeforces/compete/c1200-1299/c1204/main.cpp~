@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long sum(vector<int> a){
+	long long s = 0;
+	for(int x : a) s += x;
+	return s;
+}
+
+int n, l, r;
+
+int main(){
+	cin >> n >> l >> r;
+	vector<long long> a (n, 1);
+	//--
+	int i = 1;
+	l--;
+	r--;
+	while(l--){
+		a[i] = a[i-1]*2;
+		i++;
+		r--;
+	}
+	for(int x : a) cout << x << ' ';
+	cout << endl;
+
+	cout << sum(a) << ' ';
+	//
+	while(r--){
+		a[i] = a[i-1]*2;
+		i++;
+	}
+	while(i < n){
+		a[i] = a[i-1];
+		i++;
+	}
+	//
+	for(int x : a) cout << x << ' ';
+	cout << endl;
+	cout << sum(a);
+}
+

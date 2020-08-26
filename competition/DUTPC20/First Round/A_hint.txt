@@ -1,0 +1,15 @@
+>> Nhị phân kết quả
+
+>> Giả sử kết quả là x thì kiểm tra xem x nó nằm ở nửa trái hay nửa phải 
+>> bằng cách đếm số lượng số trung bình nhỏ hơn x
+
+> xét bài này: một mảng A[] có n phần tử chỉ là -1 hoặc 1 thì có bao nhiêu
+> subarray có tổng là dương. Ta nghĩ bài này giải trong O(n) đc
+
+> sau đó, mình sang bài này: xét mảng A[] có n phần tử là số nguyên. Gọi số
+> lượng số nhỏ hơn x là small, số lượng số số lớn hơn hoặc bằng x not_small.
+> Đếm có bao nhiêu mảng con có small lớn hơn not_small
+
+> small nó liên quan với bài trước là 1, not_small là -1
+
+> bởi vì mảng có số lượng số nhỏ hơn x mà nhiều hơn thì sẽ có trung vị nhỏ hơn x

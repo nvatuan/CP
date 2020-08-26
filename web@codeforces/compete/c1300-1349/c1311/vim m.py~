@@ -1,0 +1,23 @@
+def solve():
+    n, m = map(int, input().split())
+    a    = list(map(int, input().split()))
+    p    = list(map(int, input().split()))
+    ## ------
+    asort = a
+    asort.sort()
+    ##
+    D    = {}
+    for x in p:
+        D[x] = D[x+1] = True
+    ##
+    for i in range(0, n):
+        if D.get(i, False) == False:
+            if asort[i] != a[i]:
+                print("NO")
+    print("YES")
+
+T = int(input())
+while T > 0:
+    T -= 1
+    solve()
+
