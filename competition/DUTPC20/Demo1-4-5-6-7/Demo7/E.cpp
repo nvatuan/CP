@@ -1,9 +1,7 @@
-// https://open.kattis.com/problems/convexhull
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <stack>
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long llong;
 
 class Point {
     public:
@@ -35,18 +33,9 @@ class Point {
 long long distSqr(Point P) {
     return 1LL*(P.x)*(P.x) + 1LL*(P.y)*(P.y);
 }
-int ccw(Point a, Point b, Point c) {
-    return (b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y);
-}
 
 // --
 class ConvexHull {
-    // Constructor takes a vector<Point> as a list of points
-    // Calling this->AndrewChain() or this->GrahamScan() to perform convex hull computation.
-    // Compute convex Hull of points stored in this->points
-    // Results are stored in this->convexHull, order probably is clockwise (or ccw)
-    //
-    // Points are allowed to be duplicated. Convex Hull is strictly convex (no 3 points are collinear)
     public:
         std::vector<Point> convexHull;
         std::vector<Point> points;
@@ -54,6 +43,10 @@ class ConvexHull {
         ConvexHull(){}
         ConvexHull(const std::vector<Point> &ps) {
             points = std::vector<Point> (ps.begin(), ps.end());
+        }
+    // --
+        int ccw(Point a, Point b, Point c) {
+            return (b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y);
         }
     // ----------------------- Andrew monotone chain algorithm
         void AndrewChain() {
@@ -117,31 +110,30 @@ class ConvexHull {
             }
         }
 };
-/*
-vector<Points> p; // <- contains points
-ConvexHull ch (p); 
-ch.GrahamScan(); // or ch.AndrewChain(); to compute
-ch.convexHull; // <- result
-*/
-
 
 int main() {
     int n;
-    while (1) {
-        scanf("%d", &n);
-        if (!n) break;
-        std::vector<Point> P (n);
-        for (int i = 0; i < n; i++) {
-            scanf("%d%d", &P[i].x, &P[i].y);
-        }
-        //
-        ConvexHull ch (P);
-        ch.GrahamScan();
-        // ch.AndrewChain();
+    vector<Point> p;
 
-        printf("%d\n", ch.convexHull.size());
-        for (int i = ch.convexHull.size() - 1; i >= 0; i--) {
-            printf("%d %d\n", ch.convexHull[i].x, ch.convexHull[i].y);
+    cin >> n;
+    p.resize(n);
+    for (int i = 0; i < n; i++) cin >> p[i].x >> p[i].y;
+
+    ConvexHull ch (p);
+    ch.AndrewChain();
+
+    vector<Point>& hull = ch.convexHull;
+    int k = hull.size();
+    
+    long long ans = 0;
+    int L = 0, R = 0;
+    for (; L < k; L++) {
+        while (true) {
+            int nextR = (R + 1 == k ? 0 : R + 1);
+            if (distSqr(hull[R] - hull[L]) <= distSqr(hull[nextR] - hull[L])) R = nextR;
+            else break;
         }
+        ans = max(ans, distSqr(hull[R] - hull[L]));
     }
+    cout << ans << '\n';
 }
