@@ -26,7 +26,6 @@ int main() {
         i = ((int) tmp);
     }
 
-    
     int L = 0;
     int R = rope[0];
     for (int& d : rope) { R = max(R, d); }

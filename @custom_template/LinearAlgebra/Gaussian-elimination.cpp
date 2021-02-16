@@ -18,7 +18,7 @@ class Matrix {
         }
         
         void swap_row(int i, int j) {
-            for(int k = 0; k <= n; k++) swap(data[i][k], data[i][k]);
+            for(int k = 0; k <= n; k++) swap(data[i][k], data[j][k]);
         }
 
         void print() {
@@ -43,7 +43,7 @@ class Matrix {
 
         vector<float> Gaussian_Elimination() {
             vector<float> roots (n, 0);
-            vector< vector<float> > A = data;
+            vector< vector<float> >& A = data;
             // --
             for(int i = 0; i < n; i++) {
                 print();

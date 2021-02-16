@@ -39,6 +39,7 @@ public:
             scc++;
             while (!Stack.empty() && lowLink[Stack.top()] == lowLink[x]){ 
                 onStack[Stack.top()] = false;
+                // lowlink[Stack.top()] = lowlink[x]; // if you want lowlink value to represents a SCC's label
                 Stack.pop();
             }
         }

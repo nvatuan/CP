@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct SegmentTree {
+    int size;
+    vector<int> mx;
+
+    void init(int n) {
+        for (size = 1; size < n; size <<= 1);
+        mx.assign(size*2, 0);
+    }
+
+    void build(vector<int>& a, int x, int Lx, int Rx){
+        if (Lx + 1 == Rx) {
+            if (Lx < (int) a.size()) mx[x] = a[Lx];
+            return;
+        }
+
+        int mid = (Lx + Rx)/2;
+        build (a, x*2+1, Lx, mid);
+        build (a, x*2+2, mid, Rx);
+
+        mx[x] = max(mx[x*2+1], mx[x*2+2]);
+    }
+    void build(vector<int>& a){
+        build(a, 0, 0, size);
+    }
+
+    static int NOT_FOUND;
+
+    int query(int& val, int& l, int x, int Lx, int Rx){
+        //fprintf(stderr, "Lx:%d Rx:%d\n", Lx, Rx);
+        if (mx[x] < val) return NOT_FOUND;
+        if (Rx <= l) return NOT_FOUND;
+        if (Lx + 1 == Rx) return Lx;
+
+        int mid = (Lx + Rx) / 2;
+        int ret = query(val, l, x*2+1, Lx, mid);
+        if (ret == NOT_FOUND) return query(val, l, x*2+2, mid, Rx);
+        else return ret;
+    }
+    int query(int val, int l){
+        //fprintf(stderr, "@ val=%d, l=%d\n", val, l);
+        int ret_val = query(val, l, 0, 0, size);
+        return (ret_val == NOT_FOUND ? -1 : ret_val);
+    }
+
+    void update(int i, int v, int x, int Lx, int Rx){
+        if (Lx + 1 == Rx) {
+            mx[x] = v;
+            return;
+        }
+
+        int mid = (Lx + Rx)/2;
+        if (i < mid) update(i, v, x*2+1, Lx, mid);
+        else update(i, v, x*2+2, mid, Rx);
+
+        mx[x] = max(mx[x*2+1], mx[x*2+2]);
+    }
+    void update(int i, int v){
+        update(i, v, 0, 0, size);
+    }
+};
+
+int SegmentTree::NOT_FOUND = INT_MAX;
+
+int n, m;
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+
+    cin >> n >> m;
+    vector<int> a (n);
+    for (int &i : a) cin >> i;
+
+    SegmentTree st;
+    st.init(n);
+    st.build(a);
+
+    while (m--) {
+        int op; cin >> op;
+        op--;
+        if (op) {
+            int x, l; cin >> x >> l;
+            cout << st.query(x, l) << '\n';
+        } else {
+            int i, v; cin >> i >> v;
+            st.update(i, v);
+        }
+    }
+}

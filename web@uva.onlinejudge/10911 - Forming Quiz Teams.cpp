@@ -29,7 +29,7 @@ void Try(int pi, vector< int > choosen, double subAns) {
             }
         }
         // --
-        for(int j = 0; j < 2*N; j++) {
+        for(int j = i+1; j < 2*N; j++) {
             if( !choosen[j] ) {
                 choosen[j] = 1;
                 Try(pi + 1, choosen, subAns + dist(i, j) );
@@ -62,9 +62,9 @@ int main() {
             scanf("%d%d", &P[i].X, &P[i].Y);
         }
         // --
-        random_device rd;
-        mt19937 g(rd());
-        shuffle(P.begin(), P.end(), g);
+        //random_device rd;
+        //mt19937 g(rd());
+        //shuffle(P.begin(), P.end(), g);
         // --
         Try(0, choosen, 0.0);
         printf("Case %d: %.2lf\n", t, ans);
