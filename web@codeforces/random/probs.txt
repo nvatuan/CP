@@ -1,7 +1,7 @@
 2020-08-17
 377A - Maze [+](attempts:2;time:30)
 1342C - Yet Another Counting Problem [+](time:90;editorial:no)
-1305C - Kuroni and Impossible Calculation [-](solved:yes;editorial:yes)
+1305C - Kuroni and Impossible Calculation [-](upsolved:yes;editorial:yes)
 
 2020-08-18
 559B - Equivalent Strings [+](attempts:3;time:16)
@@ -10,14 +10,20 @@
 
 2020-08-19
 #comment: upsolving Global Round 10
-1392D - Omkar and Bed Wars [-](solved:yes;editorial:yes)
+1392D - Omkar and Bed Wars [-](upsolved:yes;editorial:yes)
 
 2020-08-20
 768B - Code For 1 [+](attempts:4;time:80)
 #comment: participate in 1401
 
 2020-08-21
-773A - Success Rate
+# no log
+
+2021-02-25
+773A - Success Rate [-](attempts:6; upsolved:yes; editorial:yes)
+
+2021-02-27
+773C - Prairie Partition [-](attempts:2; upsolved:yes; editorial:yes)
 772B - Volatile Kite
 769C - Cycle In Maze
 773B - Dynamic Problem Scoring

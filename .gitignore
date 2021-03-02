@@ -1,3 +1,4 @@
 # ignore all executable
 *.exe
 **/*secret*json
+**/in
