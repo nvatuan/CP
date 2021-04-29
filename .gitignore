@@ -2,3 +2,8 @@
 *.exe
 **/*secret*json
 **/in
+**/out
+**/tmp
+
+# ignore java binary
+**/*.class
